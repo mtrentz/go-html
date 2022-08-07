@@ -1,0 +1,27 @@
+{{define "Index"}} 
+
+{{template "_header"}}
+
+<div class="mydiv">
+    <span class="myspan">Um texto no div</span>
+</div>
+
+<form method="POST" action="input">
+    <label for="nome"></label>
+    <input type="text" name="nome">
+    <button type="submit" value="enviar">Enviar</button>
+
+</form>
+
+<div>
+    <span>Counter:</span>
+    <span id="mynumber">1</span>
+    <button class="bybutton" onclick="increment()">+</button>
+</div>
+
+</body>
+
+<script src="static/js/main.js"></script>
+
+</html>
+{{end}}

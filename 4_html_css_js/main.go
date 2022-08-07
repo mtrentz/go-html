@@ -19,7 +19,7 @@ func main() {
 	http.Handle("/static/", http.FileServer(http.FS(staticFiles)))
 	http.HandleFunc("/", index)
 	http.HandleFunc("/input", input)
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":8989", nil)
 }
 
 func index(w http.ResponseWriter, r *http.Request) {

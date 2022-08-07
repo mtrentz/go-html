@@ -1,15 +1,22 @@
 package main
 
 import (
+	"embed"
 	"fmt"
+	"html/template"
 	"net/http"
-	"text/template"
 )
 
-var templ = template.Must(template.ParseGlob("templates/*.gohtml"))
+//go:embed static/*
+var staticFiles embed.FS
+
+//go:embed templates/*
+var templateFiles embed.FS
+
+var templ = template.Must(template.ParseFS(templateFiles, "templates/*.gohtml"))
 
 func main() {
-	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+	http.Handle("/static/", http.FileServer(http.FS(staticFiles)))
 	http.HandleFunc("/", index)
 	http.HandleFunc("/input", input)
 	http.ListenAndServe(":8080", nil)
@@ -22,9 +29,7 @@ func index(w http.ResponseWriter, r *http.Request) {
 // Takes in post that has action to "input" and prints to stdout
 func input(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
-		// fmt.Println(r)
 		fmt.Println(r.FormValue("nome"))
-		// Redirect home
 		http.Redirect(w, r, "/", 301)
 	}
 }

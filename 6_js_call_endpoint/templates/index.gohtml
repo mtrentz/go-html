@@ -1,0 +1,25 @@
+{{define "Index"}} 
+
+{{template "_header"}}
+
+<div class="mydiv">
+    <span class="myspan">Um texto no div</span>
+</div>
+
+<div>
+    <span>Counter:</span>
+    <span id="mynumber">1</span>
+    <button class="bybutton" onclick="increment()">+</button>
+</div>
+
+<div class="display: flex; flex-direction: row;">
+    <input type="text" name="nome" id="myinput" class="myinput" onkeyup="funcKeyUp()">
+    <div>Reversed: <span id="reversedString"></span></div>
+</div>
+
+</body>
+
+<script src="static/js/main.js"></script>
+
+</html>
+{{end}}
